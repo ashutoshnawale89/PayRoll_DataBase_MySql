@@ -93,3 +93,41 @@ mysql> select start_date from employee_payroll where name='Ramesh Mahajan';
 | 2022-01-01 |
 +------------+
 1 row in set (0.00 sec)
+
+mysql> alter table employee_payroll ADD column gender VARCHAR(20);
+Query OK, 0 rows affected (0.31 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select*from employee_payroll;
++------+----------------+--------+------------+--------+
+| id   | name           | salary | start_date | gender |
++------+----------------+--------+------------+--------+
+|    1 | Ramesh Mahajan | 400000 | 2022-01-01 | NULL   |
+|    2 | Suresh Kate    | 550000 | 2022-07-03 | NULL   |
+|    3 | Geeta Shelke   | 350000 | 2022-11-08 | NULL   |
++------+----------------+--------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update employee_payroll set gender='Female' where id=3;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set gender='Male' where id=2;
+Query OK, 1 row affected (0.61 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set gender='Male' where id=1;
+Query OK, 1 row affected (0.17 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from employee_payroll;
++------+----------------+--------+------------+--------+
+| id   | name           | salary | start_date | gender |
++------+----------------+--------+------------+--------+
+|    1 | Ramesh Mahajan | 400000 | 2022-01-01 | Male   |
+|    2 | Suresh Kate    | 550000 | 2022-07-03 | Male   |
+|    3 | Geeta Shelke   | 350000 | 2022-11-08 | Female |
++------+----------------+--------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql>
