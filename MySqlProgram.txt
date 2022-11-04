@@ -36,6 +36,8 @@ Empty set (0.26 sec)
 
 mysql> insert into employee_payroll values(1,'Ramesh Mahajan',400000,01-01-2022);
 ERROR 1292 (22007): Incorrect date value: '-2022' for column 'start_date' at row 1
+
+
 mysql> insert into employee_payroll values(1,'Ramesh Mahajan',400000,01/01/2022);
 Query OK, 1 row affected (0.70 sec)
 
