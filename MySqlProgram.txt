@@ -131,3 +131,19 @@ mysql> select*from employee_payroll;
 3 rows in set (0.00 sec)
 
 mysql>
+
+mysql> select sum(salary) from employee_payroll where gender ='Female' group by gender;
++-------------+
+| sum(salary) |
++-------------+
+|      350000 |
++-------------+
+1 row in set (0.12 sec)
+
+mysql> select sum(salary) from employee_payroll where gender ='Male' group by gender;
++-------------+
+| sum(salary) |
++-------------+
+|      950000 |
++-------------+
+1 row in set (0.00 sec)
