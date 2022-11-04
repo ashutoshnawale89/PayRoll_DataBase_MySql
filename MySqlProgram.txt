@@ -33,3 +33,30 @@ mysql> show tables;
 
 mysql> select*from employee_payroll;
 Empty set (0.26 sec)
+
+mysql> insert into employee_payroll values(1,'Ramesh Mahajan',400000,01-01-2022);
+ERROR 1292 (22007): Incorrect date value: '-2022' for column 'start_date' at row 1
+mysql> insert into employee_payroll values(1,'Ramesh Mahajan',400000,01/01/2022);
+Query OK, 1 row affected (0.70 sec)
+
+mysql> insert into employee_payroll values(2,'Suresh Kate',550000,15/04/2022);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into employee_payroll values(2,'Geeta Shelke',350000,28/04/2022);
+Query OK, 1 row affected (0.65 sec)
+
+mysql> update employee_payroll set id =3 where salary = 350000;
+Query OK, 1 row affected (0.96 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from employee_payroll;
++------+----------------+--------+------------+
+| id   | name           | salary | start_date |
++------+----------------+--------+------------+
+|    1 | Ramesh Mahajan | 400000 | 0000-00-00 |
+|    2 | Suresh Kate    | 550000 | 0000-00-00 |
+|    3 | Geeta Shelke   | 350000 | 0000-00-00 |
++------+----------------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql>
