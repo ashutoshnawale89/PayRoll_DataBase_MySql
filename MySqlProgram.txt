@@ -207,4 +207,69 @@ _pay | income_tax | net_pay |
 +------+----------------+---------+------------+--------+-------+---------+------------+-----------+-----------+--------
 -----+------------+---------+
 4 rows in set (0.00 sec)
+mysql> insert into employee_payrll VALUES(05,'Rajesh Chauhan',850000,'2021-01-10','Male',7788995,'Mumbai','Sales',850000
+,80000,120000,50000,720000);
+ERROR 1146 (42S02): Table 'payroll.employee_payrll' doesn't exist
+mysql> insert into employee_payroll VALUES(05,'Rajesh Chauhan',850000,'2021-01-10','Male',7788995,'Mumbai','Sales',85000
+0,80000,120000,50000,720000);
+Query OK, 1 row affected (0.25 sec)
 
+mysql> insert into employee_payroll VALUES(6,'Rajesh Chauhan',850000,'2021-01-10','Male',7788995,'Mumbai','Sales',30000
+00,1000000,2000000,500000,1500000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from employee_payroll;
++------+----------------+---------+------------+--------+---------+---------+------------+-----------+-----------+------
+-------+------------+---------+
+| id   | name           | salary  | start_date | gender | phone   | address | department | basic_Pay | deduction | taxab
+le_pay | income_tax | net_pay |
++------+----------------+---------+------------+--------+---------+---------+------------+-----------+-----------+------
+-------+------------+---------+
+|    1 | Ramesh Mahajan |  400000 | 2022-01-01 | Male   | NULL    | NULL    |            |         0 |         0 |
+     0 |          0 |       0 |
+|    2 | Suresh Kate    |  550000 | 2022-07-03 | Male   | NULL    | NULL    |            |         0 |         0 |
+     0 |          0 |       0 |
+|    3 | Geeta Shelke   |  270000 | 2022-11-08 | Female | NULL    | NULL    |            |         0 |         0 |
+     0 |          0 |       0 |
+|    4 | Terisa         | 3000000 | 2022-06-12 | Female | NULL    | NULL    |            |         0 |         0 |
+     0 |          0 |       0 |
+|    5 | Rajesh Chauhan |  850000 | 2021-01-10 | Male   | 7788995 | Mumbai  | Sales      |    850000 |     80000 |
+120000 |      50000 |  720000 |
+|    6 | Rajesh Chauhan |  850000 | 2021-01-10 | Male   | 7788995 | Mumbai  | Sales      |   3000000 |   1000000 |     2
+000000 |     500000 | 1500000 |
++------+----------------+---------+------------+--------+---------+---------+------------+-----------+-----------+------
+-------+------------+---------+
+6 rows in set (0.00 sec)
+mysql> insert into employee_payroll VALUES(07,'Terisa',3000000,'2022--06-12','Female',77885525,'Banglore','Sales',300000
+0,1000000,2000000,500000,1500000);
+Query OK, 1 row affected, 1 warning (0.05 sec)
+
+mysql> update emplyee_payroll set department='Marketing' where id=04;
+ERROR 1146 (42S02): Table 'payroll.emplyee_payroll' doesn't exist
+mysql> update employee_payroll set department='Marketing' where id=04;
+Query OK, 1 row affected (0.32 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++------+----------------+---------+------------+--------+----------+----------+------------+-----------+-----------+----
+---------+------------+---------+
+| id   | name           | salary  | start_date | gender | phone    | address  | department | basic_Pay | deduction | tax
+able_pay | income_tax | net_pay |
++------+----------------+---------+------------+--------+----------+----------+------------+-----------+-----------+----
+---------+------------+---------+
+|    1 | Ramesh Mahajan |  400000 | 2022-01-01 | Male   | NULL     | NULL     |            |         0 |         0 |
+       0 |          0 |       0 |
+|    2 | Suresh Kate    |  550000 | 2022-07-03 | Male   | NULL     | NULL     |            |         0 |         0 |
+       0 |          0 |       0 |
+|    3 | Geeta Shelke   |  270000 | 2022-11-08 | Female | NULL     | NULL     |            |         0 |         0 |
+       0 |          0 |       0 |
+|    4 | Terisa         | 3000000 | 2022-06-12 | Female | NULL     | NULL     | Marketing  |         0 |         0 |
+       0 |          0 |       0 |
+|    5 | Rajesh Chauhan |  850000 | 2021-01-10 | Male   | 7788995  | Mumbai   | Sales      |    850000 |     80000 |
+  120000 |      50000 |  720000 |
+|    5 | Rajesh Chauhan |  850000 | 2021-01-10 | Male   | 7788995  | Mumbai   | Sales      |   3000000 |   1000000 |
+ 2000000 |     500000 | 1500000 |
+|    7 | Terisa         | 3000000 | 2022-06-12 | Female | 77885525 | Banglore | Sales      |   3000000 |   1000000 |
+ 2000000 |     500000 | 1500000 |
++------+----------------+---------+------------+--------+----------+----------+------------+-----------+-----------+----
+---------+------------+---------+
