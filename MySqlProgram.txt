@@ -175,3 +175,36 @@ mysql> select * from employee_payroll;
 |    4 | Terisa         | 3000000 | 2022-06-12 | Female | NULL  | NULL    |            |
 +------+----------------+---------+------------+--------+-------+---------+------------+
 4 rows in set (0.00 sec)
+
+
+mysql> alter table employee_payroll add column taxable_pay INT(100)NOT NULL;
+Query OK, 0 rows affected, 1 warning (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> alter table employee_payroll add column income_tax INT(100)NOT NULL;
+Query OK, 0 rows affected, 1 warning (0.20 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> alter table employee_payroll add column net_pay INT(100)NOT NULL;
+Query OK, 0 rows affected, 1 warning (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> select * from employee_payroll;
++------+----------------+---------+------------+--------+-------+---------+------------+-----------+-----------+--------
+-----+------------+---------+
+| id   | name           | salary  | start_date | gender | phone | address | department | basic_Pay | deduction | taxable
+_pay | income_tax | net_pay |
++------+----------------+---------+------------+--------+-------+---------+------------+-----------+-----------+--------
+-----+------------+---------+
+|    1 | Ramesh Mahajan |  400000 | 2022-01-01 | Male   | NULL  | NULL    |            |         0 |         0 |
+   0 |          0 |       0 |
+|    2 | Suresh Kate    |  550000 | 2022-07-03 | Male   | NULL  | NULL    |            |         0 |         0 |
+   0 |          0 |       0 |
+|    3 | Geeta Shelke   |  270000 | 2022-11-08 | Female | NULL  | NULL    |            |         0 |         0 |
+   0 |          0 |       0 |
+|    4 | Terisa         | 3000000 | 2022-06-12 | Female | NULL  | NULL    |            |         0 |         0 |
+   0 |          0 |       0 |
++------+----------------+---------+------------+--------+-------+---------+------------+-----------+-----------+--------
+-----+------------+---------+
+4 rows in set (0.00 sec)
+
