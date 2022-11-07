@@ -147,3 +147,31 @@ mysql> select sum(salary) from employee_payroll where gender ='Male' group by ge
 |      950000 |
 +-------------+
 1 row in set (0.00 sec)
+
+
+mysql> alter table employee_payroll add column address VARCHAR(100);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll add column department VARCHAR(100);
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll DROP COLUMN department;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll add column department VARCHAR(100)NOT NULL;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++------+----------------+---------+------------+--------+-------+---------+------------+
+| id   | name           | salary  | start_date | gender | phone | address | department |
++------+----------------+---------+------------+--------+-------+---------+------------+
+|    1 | Ramesh Mahajan |  400000 | 2022-01-01 | Male   | NULL  | NULL    |            |
+|    2 | Suresh Kate    |  550000 | 2022-07-03 | Male   | NULL  | NULL    |            |
+|    3 | Geeta Shelke   |  270000 | 2022-11-08 | Female | NULL  | NULL    |            |
+|    4 | Terisa         | 3000000 | 2022-06-12 | Female | NULL  | NULL    |            |
++------+----------------+---------+------------+--------+-------+---------+------------+
+4 rows in set (0.00 sec)
