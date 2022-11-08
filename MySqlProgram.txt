@@ -1,275 +1,56 @@
-Welcome to the MYSQL  Program 
-
-
-mysql> create database payroll;
-Query OK, 1 row affected (0.87 sec)
-
-mysql> use payroll
-Database changed
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| mysql              |
-| payroll            |             |
-| student_info       |
-| sys                |
-| world              |
-+--------------------+
-12 rows in set (0.00 sec)
-
-mysql>
-
-mysql> create table employee_payroll(id INT(10),name VARCHAR(100),salary INT(50),start
-Query OK, 0 rows affected, 2 warnings (1.08 sec)
-
 mysql> show tables;
-+-------------------+
-| Tables_in_payroll |
-+-------------------+
-| employee_payroll  |
-+-------------------+
-1 row in set (0.20 sec)
++---------------------+
+| Tables_in_payroll   |
++---------------------+
+| employee_department |
+| employee_payroll    |
++---------------------+
+2 rows in set (0.00 sec)
 
-mysql> select*from employee_payroll;
-Empty set (0.26 sec)
+mysql> select * from employee_department;
++---------------------+
+| employee_department |
+| employee_payroll    |
++---------------------+
+2 rows in set (0.00 sec)
 
-mysql> insert into employee_payroll values(1,'Ramesh Mahajan',400000,01-01-2022);
-ERROR 1292 (22007): Incorrect date value: '-2022' for column 'start_date' at row 1
-
-
-mysql> insert into employee_payroll values(1,'Ramesh Mahajan',400000,01/01/2022);
-Query OK, 1 row affected (0.70 sec)
-
-mysql> insert into employee_payroll values(2,'Suresh Kate',550000,15/04/2022);
-Query OK, 1 row affected (0.12 sec)
-
-mysql> insert into employee_payroll values(2,'Geeta Shelke',350000,28/04/2022);
-Query OK, 1 row affected (0.65 sec)
-
-mysql> update employee_payroll set id =3 where salary = 350000;
-Query OK, 1 row affected (0.96 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> select*from employee_payroll;
-+------+----------------+--------+------------+
-| id   | name           | salary | start_date |
-+------+----------------+--------+------------+
-|    1 | Ramesh Mahajan | 400000 | 0000-00-00 |
-|    2 | Suresh Kate    | 550000 | 0000-00-00 |
-|    3 | Geeta Shelke   | 350000 | 0000-00-00 |
-+------+----------------+--------+------------+
+mysql> select * from employee_department;
++---------------+-------------+
+| department_id | employee_id |
++---------------+-------------+
+|             1 |     4568855 |
+|             2 |     4599995 |
+|             3 |    45777778 |
++---------------+-------------+
 3 rows in set (0.00 sec)
 
-mysql>
-mysql> select salary from employee_payroll where name='Ramesh Mahajan';
-+--------+
-| salary |
-+--------+
-| 400000 |
-+--------+
+mysql> select employee_id  from employee_department where department_id=1;
++-------------+
+| employee_id |
++-------------+
+|     4568855 |
++-------------+
 1 row in set (0.00 sec)
-
-mysql> select salary from employee_payroll where name='Suresh Kate';
-+--------+
-| salary |
-+--------+
-| 550000 |
-+--------+
-1 row in set (0.00 sec)
-
-mysql> select start_date from employee_payroll where name='Suresh Kate';
-+------------+
-| start_date |
-+------------+
-| 2022-07-03 |
-+------------+
-1 row in set (0.00 sec)
-
-mysql> select start_date from employee_payroll where name='Ramesh Mahajan';
-+------------+
-| start_date |
-+------------+
-| 2022-01-01 |
-+------------+
-1 row in set (0.00 sec)
-
-mysql> alter table employee_payroll ADD column gender VARCHAR(20);
-Query OK, 0 rows affected (0.31 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> select*from employee_payroll;
-+------+----------------+--------+------------+--------+
-| id   | name           | salary | start_date | gender |
-+------+----------------+--------+------------+--------+
-|    1 | Ramesh Mahajan | 400000 | 2022-01-01 | NULL   |
-|    2 | Suresh Kate    | 550000 | 2022-07-03 | NULL   |
-|    3 | Geeta Shelke   | 350000 | 2022-11-08 | NULL   |
-+------+----------------+--------+------------+--------+
-3 rows in set (0.00 sec)
-
-mysql> update employee_payroll set gender='Female' where id=3;
-Query OK, 1 row affected (0.06 sec)
+mysql> select employee_department set employee_id=77888552 where department_id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds
+mysql> update employee_department set employee_id=77888552 where department_id=1;
+Query OK, 1 row affected (0.07 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> update employee_payroll set gender='Male' where id=2;
-Query OK, 1 row affected (0.61 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select * from employee_department;
++---------------+-------------+
+| department_id | employee_id |
++---------------+-------------+
+|             2 |     4599995 |
+|             3 |    45777778 |
+|             1 |    77888552 |
++---------------+-------------+
 
-mysql> update employee_payroll set gender='Male' where id=1;
-Query OK, 1 row affected (0.17 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> select*from employee_payroll;
-+------+----------------+--------+------------+--------+
-| id   | name           | salary | start_date | gender |
-+------+----------------+--------+------------+--------+
-|    1 | Ramesh Mahajan | 400000 | 2022-01-01 | Male   |
-|    2 | Suresh Kate    | 550000 | 2022-07-03 | Male   |
-|    3 | Geeta Shelke   | 350000 | 2022-11-08 | Female |
-+------+----------------+--------+------------+--------+
-3 rows in set (0.00 sec)
-
-mysql>
-
-mysql> select sum(salary) from employee_payroll where gender ='Female' group by gender;
-+-------------+
-| sum(salary) |
-+-------------+
-|      350000 |
-+-------------+
-1 row in set (0.12 sec)
-
-mysql> select sum(salary) from employee_payroll where gender ='Male' group by gender;
-+-------------+
-| sum(salary) |
-+-------------+
-|      950000 |
-+-------------+
+mysql> select count(*) from employee_department;
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
 1 row in set (0.00 sec)
-
-
-mysql> alter table employee_payroll add column address VARCHAR(100);
-Query OK, 0 rows affected (0.06 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> alter table employee_payroll add column department VARCHAR(100);
-Query OK, 0 rows affected (0.13 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> alter table employee_payroll DROP COLUMN department;
-Query OK, 0 rows affected (0.12 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> alter table employee_payroll add column department VARCHAR(100)NOT NULL;
-Query OK, 0 rows affected (0.08 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> select * from employee_payroll;
-+------+----------------+---------+------------+--------+-------+---------+------------+
-| id   | name           | salary  | start_date | gender | phone | address | department |
-+------+----------------+---------+------------+--------+-------+---------+------------+
-|    1 | Ramesh Mahajan |  400000 | 2022-01-01 | Male   | NULL  | NULL    |            |
-|    2 | Suresh Kate    |  550000 | 2022-07-03 | Male   | NULL  | NULL    |            |
-|    3 | Geeta Shelke   |  270000 | 2022-11-08 | Female | NULL  | NULL    |            |
-|    4 | Terisa         | 3000000 | 2022-06-12 | Female | NULL  | NULL    |            |
-+------+----------------+---------+------------+--------+-------+---------+------------+
-4 rows in set (0.00 sec)
-
-
-mysql> alter table employee_payroll add column taxable_pay INT(100)NOT NULL;
-Query OK, 0 rows affected, 1 warning (0.14 sec)
-Records: 0  Duplicates: 0  Warnings: 1
-
-mysql> alter table employee_payroll add column income_tax INT(100)NOT NULL;
-Query OK, 0 rows affected, 1 warning (0.20 sec)
-Records: 0  Duplicates: 0  Warnings: 1
-
-mysql> alter table employee_payroll add column net_pay INT(100)NOT NULL;
-Query OK, 0 rows affected, 1 warning (0.12 sec)
-Records: 0  Duplicates: 0  Warnings: 1
-
-mysql> select * from employee_payroll;
-+------+----------------+---------+------------+--------+-------+---------+------------+-----------+-----------+--------
------+------------+---------+
-| id   | name           | salary  | start_date | gender | phone | address | department | basic_Pay | deduction | taxable
-_pay | income_tax | net_pay |
-+------+----------------+---------+------------+--------+-------+---------+------------+-----------+-----------+--------
------+------------+---------+
-|    1 | Ramesh Mahajan |  400000 | 2022-01-01 | Male   | NULL  | NULL    |            |         0 |         0 |
-   0 |          0 |       0 |
-|    2 | Suresh Kate    |  550000 | 2022-07-03 | Male   | NULL  | NULL    |            |         0 |         0 |
-   0 |          0 |       0 |
-|    3 | Geeta Shelke   |  270000 | 2022-11-08 | Female | NULL  | NULL    |            |         0 |         0 |
-   0 |          0 |       0 |
-|    4 | Terisa         | 3000000 | 2022-06-12 | Female | NULL  | NULL    |            |         0 |         0 |
-   0 |          0 |       0 |
-+------+----------------+---------+------------+--------+-------+---------+------------+-----------+-----------+--------
------+------------+---------+
-4 rows in set (0.00 sec)
-mysql> insert into employee_payrll VALUES(05,'Rajesh Chauhan',850000,'2021-01-10','Male',7788995,'Mumbai','Sales',850000
-,80000,120000,50000,720000);
-ERROR 1146 (42S02): Table 'payroll.employee_payrll' doesn't exist
-mysql> insert into employee_payroll VALUES(05,'Rajesh Chauhan',850000,'2021-01-10','Male',7788995,'Mumbai','Sales',85000
-0,80000,120000,50000,720000);
-Query OK, 1 row affected (0.25 sec)
-
-mysql> insert into employee_payroll VALUES(6,'Rajesh Chauhan',850000,'2021-01-10','Male',7788995,'Mumbai','Sales',30000
-00,1000000,2000000,500000,1500000);
-Query OK, 1 row affected (0.04 sec)
-
-mysql> select * from employee_payroll;
-+------+----------------+---------+------------+--------+---------+---------+------------+-----------+-----------+------
--------+------------+---------+
-| id   | name           | salary  | start_date | gender | phone   | address | department | basic_Pay | deduction | taxab
-le_pay | income_tax | net_pay |
-+------+----------------+---------+------------+--------+---------+---------+------------+-----------+-----------+------
--------+------------+---------+
-|    1 | Ramesh Mahajan |  400000 | 2022-01-01 | Male   | NULL    | NULL    |            |         0 |         0 |
-     0 |          0 |       0 |
-|    2 | Suresh Kate    |  550000 | 2022-07-03 | Male   | NULL    | NULL    |            |         0 |         0 |
-     0 |          0 |       0 |
-|    3 | Geeta Shelke   |  270000 | 2022-11-08 | Female | NULL    | NULL    |            |         0 |         0 |
-     0 |          0 |       0 |
-|    4 | Terisa         | 3000000 | 2022-06-12 | Female | NULL    | NULL    |            |         0 |         0 |
-     0 |          0 |       0 |
-|    5 | Rajesh Chauhan |  850000 | 2021-01-10 | Male   | 7788995 | Mumbai  | Sales      |    850000 |     80000 |
-120000 |      50000 |  720000 |
-|    6 | Rajesh Chauhan |  850000 | 2021-01-10 | Male   | 7788995 | Mumbai  | Sales      |   3000000 |   1000000 |     2
-000000 |     500000 | 1500000 |
-+------+----------------+---------+------------+--------+---------+---------+------------+-----------+-----------+------
--------+------------+---------+
-6 rows in set (0.00 sec)
-mysql> insert into employee_payroll VALUES(07,'Terisa',3000000,'2022--06-12','Female',77885525,'Banglore','Sales',300000
-0,1000000,2000000,500000,1500000);
-Query OK, 1 row affected, 1 warning (0.05 sec)
-
-mysql> update emplyee_payroll set department='Marketing' where id=04;
-ERROR 1146 (42S02): Table 'payroll.emplyee_payroll' doesn't exist
-mysql> update employee_payroll set department='Marketing' where id=04;
-Query OK, 1 row affected (0.32 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> select * from employee_payroll;
-+------+----------------+---------+------------+--------+----------+----------+------------+-----------+-----------+----
----------+------------+---------+
-| id   | name           | salary  | start_date | gender | phone    | address  | department | basic_Pay | deduction | tax
-able_pay | income_tax | net_pay |
-+------+----------------+---------+------------+--------+----------+----------+------------+-----------+-----------+----
----------+------------+---------+
-|    1 | Ramesh Mahajan |  400000 | 2022-01-01 | Male   | NULL     | NULL     |            |         0 |         0 |
-       0 |          0 |       0 |
-|    2 | Suresh Kate    |  550000 | 2022-07-03 | Male   | NULL     | NULL     |            |         0 |         0 |
-       0 |          0 |       0 |
-|    3 | Geeta Shelke   |  270000 | 2022-11-08 | Female | NULL     | NULL     |            |         0 |         0 |
-       0 |          0 |       0 |
-|    4 | Terisa         | 3000000 | 2022-06-12 | Female | NULL     | NULL     | Marketing  |         0 |         0 |
-       0 |          0 |       0 |
-|    5 | Rajesh Chauhan |  850000 | 2021-01-10 | Male   | 7788995  | Mumbai   | Sales      |    850000 |     80000 |
-  120000 |      50000 |  720000 |
-|    5 | Rajesh Chauhan |  850000 | 2021-01-10 | Male   | 7788995  | Mumbai   | Sales      |   3000000 |   1000000 |
- 2000000 |     500000 | 1500000 |
-|    7 | Terisa         | 3000000 | 2022-06-12 | Female | 77885525 | Banglore | Sales      |   3000000 |   1000000 |
- 2000000 |     500000 | 1500000 |
-+------+----------------+---------+------------+--------+----------+----------+------------+-----------+-----------+----
----------+------------+---------+
